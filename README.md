@@ -348,7 +348,7 @@ The tool retains full compatibility with the Haiwell PLC Modbus register layout:
 
 ## Maintainers
 
-[@Azar](https://github.com/example)
+[@chryote](https://github.com/chryote)
 
 ## Contributing
 
@@ -362,4 +362,4 @@ Small note: If editing the Readme, please conform to the [standard-readme](https
 
 ## License
 
-[MIT](LICENSE) © 2026 PLC Tool Contributors
+[MIT](LICENSE) © 2026 chryote
