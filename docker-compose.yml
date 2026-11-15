@@ -1,0 +1,37 @@
+services:
+  # Main PLC Tool service connecting to hardware PLC
+  plc-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plc-modbus-tool:latest
+    environment:
+      - PLC_HOST=${PLC_HOST:-192.168.70.111}
+      - PLC_PORT=${PLC_PORT:-502}
+      - PLC_UNIT_ID=${PLC_UNIT_ID:-1}
+    command: ["lane", "-c", "--interval", "1000"]
+    restart: unless-stopped
+
+  # Mock Simulation service for offline development and CI
+  plc-mock-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plc-modbus-tool:latest
+    command: ["lane", "--mock", "-c", "--interval", "1500"]
+
+  # Automated Unit Test Runner
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plc-modbus-tool:latest
+    entrypoint: ["plc_tests"]
+
+  # Automated Benchmark Runner
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plc-modbus-tool:latest
+    entrypoint: ["plc_benchmarks"]
